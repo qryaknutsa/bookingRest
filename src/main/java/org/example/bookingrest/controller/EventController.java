@@ -10,13 +10,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/events")
+@RequestMapping("TMA/api/v2/booking")
 public class EventController {
 
     private final SoapService soapService;
 
     public EventController(SoapService soapService) {
         this.soapService = soapService;
+    }
+
+    @GetMapping("qwe")
+    public String getQwe() {
+        return soapService.getQwe();
     }
 
     @GetMapping("/{id}")
@@ -35,12 +40,12 @@ public class EventController {
         return soapService.save(event);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("event/{id}/cancel")
     public void deleteEvent(@PathVariable String id) {
         soapService.delete(id);
     }
 
-    @PostMapping("/{ticket_id}/{person_id}")
+    @PostMapping("sell/vip/{ticket_id}/{person_id}")
     public Ticket copyTicketWithDoublePriceAndVip(@PathVariable String ticket_id, @PathVariable String person_id) {
         return soapService.copyTicketWithDoublePriceAndVip(ticket_id, person_id);
     }

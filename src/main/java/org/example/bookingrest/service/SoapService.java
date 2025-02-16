@@ -17,6 +17,30 @@ public class SoapService {
         this.webServiceTemplate = webServiceTemplate;
     }
 
+    public String getQwe() {
+        try {
+            GetQwe request = new GetQwe();
+            Object response = webServiceTemplate.marshalSendAndReceive(request);
+
+            if (response instanceof JAXBElement) {
+                JAXBElement<?> jaxbElement = (JAXBElement<?>) response;
+                GetQweResponse eventsResponse = (GetQweResponse) jaxbElement.getValue();
+
+                return eventsResponse.getReturn();
+            }
+
+            if (response instanceof GetAllEventsResponse) {
+                GetQweResponse eventsResponse = (GetQweResponse) response;
+                return eventsResponse.getReturn();
+            }
+
+            throw new RuntimeException("Unexpected response type: " + response.getClass());
+        } catch (SoapFaultClientException ex) {
+            throw ex;
+        }
+    }
+
+
     public List<EventRead> getAllEvents() {
         try {
             GetAllEvents request = new GetAllEvents();
