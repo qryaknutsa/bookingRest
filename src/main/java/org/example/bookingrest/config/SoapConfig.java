@@ -1,5 +1,6 @@
-package org.example.bookingrest;
+package org.example.bookingrest.config;
 
+import org.example.bookingrest.service.SoapService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
