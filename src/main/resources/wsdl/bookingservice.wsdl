@@ -1,0 +1,606 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://controller.bookingServicePayara.example.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="EventServiceImplService" targetNamespace="http://controller.bookingServicePayara.example.com/">
+  <wsdl:types>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://controller.bookingServicePayara.example.com/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://controller.bookingServicePayara.example.com/" version="1.0">
+      <xs:element name="CoordinatesWrite" type="tns:CoordinatesWrite"/>
+      <xs:element name="EventRead" type="tns:eventRead"/>
+      <xs:element name="EventReadList" type="tns:eventReadList"/>
+      <xs:element name="EventWrite" type="tns:eventWrite"/>
+      <xs:element name="addEvent" type="tns:addEvent"/>
+      <xs:element name="addEventResponse" type="tns:addEventResponse"/>
+      <xs:element name="copyTicketWithDoublePriceAndVip" type="tns:copyTicketWithDoublePriceAndVip"/>
+      <xs:element name="copyTicketWithDoublePriceAndVipResponse" type="tns:copyTicketWithDoublePriceAndVipResponse"/>
+      <xs:element name="deleteEvent" type="tns:deleteEvent"/>
+      <xs:element name="deleteEventResponse" type="tns:deleteEventResponse"/>
+      <xs:element name="getAllEvents" type="tns:getAllEvents"/>
+      <xs:element name="getAllEventsResponse" type="tns:getAllEventsResponse"/>
+      <xs:element name="getEvent" type="tns:getEvent"/>
+      <xs:element name="getEventResponse" type="tns:getEventResponse"/>
+      <xs:element name="getPerson" type="tns:getPerson"/>
+      <xs:element name="getPersonResponse" type="tns:getPersonResponse"/>
+      <xs:element name="getQwe" type="tns:getQwe"/>
+      <xs:element name="getQweResponse" type="tns:getQweResponse"/>
+      <xs:element name="getTicket" type="tns:getTicket"/>
+      <xs:element name="getTicketResponse" type="tns:getTicketResponse"/>
+      <xs:element name="locationWrite" type="tns:locationWrite"/>
+      <xs:element name="person" type="tns:personWrite"/>
+      <xs:element name="ticket" nillable="true" type="xs:anyType"/>
+      <xs:complexType name="deleteEvent">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="event_id" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="deleteEventResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="copyTicketWithDoublePriceAndVip">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ticket_id" type="xs:string"/>
+          <xs:element minOccurs="0" name="person_id" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="copyTicketWithDoublePriceAndVipResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:ticket"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ticket">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="coordinates" type="tns:coordinates"/>
+          <xs:element minOccurs="0" name="creationDate" type="tns:zonedDateTime"/>
+          <xs:element name="discount" type="xs:double"/>
+          <xs:element name="eventId" type="xs:int"/>
+          <xs:element minOccurs="0" name="id" type="xs:long"/>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+          <xs:element minOccurs="0" name="person" type="tns:person"/>
+          <xs:element name="price" type="xs:int"/>
+          <xs:element name="refundable" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="type" type="tns:ticketType"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="coordinates">
+        <xs:sequence>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element name="x" type="xs:float"/>
+          <xs:element minOccurs="0" name="y" type="xs:float"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType final="extension restriction" name="zonedDateTime">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="person">
+        <xs:sequence>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element name="height" type="xs:int"/>
+          <xs:element minOccurs="0" name="eyeColor" type="tns:eyeColor"/>
+          <xs:element minOccurs="0" name="hairColor" type="tns:hairColor"/>
+          <xs:element minOccurs="0" name="nationality" type="tns:country"/>
+          <xs:element minOccurs="0" name="location" type="tns:location"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="location">
+        <xs:sequence>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+          <xs:element name="x" type="xs:int"/>
+          <xs:element name="y" type="xs:long"/>
+          <xs:element name="z" type="xs:double"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getTicket">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getTicketResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:ticketWithEventWrite"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ticketWithEventWrite">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+          <xs:element minOccurs="0" name="coordinates" type="tns:CoordinatesWrite"/>
+          <xs:element minOccurs="0" name="price" type="xs:int"/>
+          <xs:element minOccurs="0" name="discount" type="xs:double"/>
+          <xs:element minOccurs="0" name="refundable" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="type" type="xs:string"/>
+          <xs:element minOccurs="0" name="person" type="tns:personWrite"/>
+          <xs:element minOccurs="0" name="eventId" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CoordinatesWrite">
+        <xs:sequence>
+          <xs:element name="x" type="xs:float"/>
+          <xs:element minOccurs="0" name="y" type="xs:float"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="personWrite">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:int"/>
+          <xs:element minOccurs="0" name="height" type="xs:int"/>
+          <xs:element minOccurs="0" name="eyeColor" type="xs:string"/>
+          <xs:element minOccurs="0" name="hairColor" type="xs:string"/>
+          <xs:element minOccurs="0" name="nationality" type="xs:string"/>
+          <xs:element minOccurs="0" name="location" type="tns:locationWrite"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="locationWrite">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="x" type="xs:int"/>
+          <xs:element name="y" type="xs:long"/>
+          <xs:element minOccurs="0" name="z" type="xs:double"/>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getAllEvents">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="getAllEventsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:eventReadList"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="eventReadList">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="list" type="tns:eventRead"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="eventRead">
+        <xs:sequence>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element minOccurs="0" name="title" type="xs:string"/>
+          <xs:element minOccurs="0" name="description" type="xs:string"/>
+          <xs:element minOccurs="0" name="startTime" type="xs:string"/>
+          <xs:element minOccurs="0" name="endTime" type="xs:string"/>
+          <xs:element minOccurs="0" name="coordinates" type="tns:CoordinatesWrite"/>
+          <xs:element minOccurs="0" name="location" type="tns:locationWrite"/>
+          <xs:element minOccurs="0" name="price" type="xs:int"/>
+          <xs:element minOccurs="0" name="discount" type="xs:double"/>
+          <xs:element minOccurs="0" name="ticketsNum" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getPerson">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getPersonResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:person"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getQwe">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="getQweResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="addEvent">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="eventWrite" type="tns:eventWrite"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="eventWrite">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="title" type="xs:string"/>
+          <xs:element minOccurs="0" name="description" type="xs:string"/>
+          <xs:element minOccurs="0" name="startTime" type="xs:string"/>
+          <xs:element minOccurs="0" name="endTime" type="xs:string"/>
+          <xs:element minOccurs="0" name="coordinates" type="tns:CoordinatesWrite"/>
+          <xs:element minOccurs="0" name="price" type="xs:int"/>
+          <xs:element minOccurs="0" name="discount" type="xs:double"/>
+          <xs:element minOccurs="0" name="location" type="tns:locationWrite"/>
+          <xs:element minOccurs="0" name="ticketsNum" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="addEventResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:event"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="event">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="coordinates" type="tns:coordinates"/>
+          <xs:element minOccurs="0" name="description" type="xs:string"/>
+          <xs:element name="discount" type="xs:double"/>
+          <xs:element minOccurs="0" name="endTime" type="tns:zonedDateTime"/>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element minOccurs="0" name="location" type="tns:location"/>
+          <xs:element name="price" type="xs:int"/>
+          <xs:element minOccurs="0" name="startTime" type="tns:zonedDateTime"/>
+          <xs:element minOccurs="0" name="title" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getEvent">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getEventResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:eventRead"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="eyeColor">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="GREEN"/>
+          <xs:enumeration value="RED"/>
+          <xs:enumeration value="BLUE"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="hairColor">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="RED"/>
+          <xs:enumeration value="BLACK"/>
+          <xs:enumeration value="BLUE"/>
+          <xs:enumeration value="ORANGE"/>
+          <xs:enumeration value="WHITE"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="country">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="NORTH_KOREA"/>
+          <xs:enumeration value="JAPAN"/>
+          <xs:enumeration value="CHINA"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="ticketType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="CHEAP"/>
+          <xs:enumeration value="BUDGETARY"/>
+          <xs:enumeration value="USUAL"/>
+          <xs:enumeration value="VIP"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="InvalidParameter" type="tns:InvalidParameter"/>
+      <xs:complexType name="InvalidParameter">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="messages" type="xs:string"/>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="CustomNotFound" type="tns:CustomNotFound"/>
+      <xs:complexType name="CustomNotFound">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="TooLateToDelete" type="tns:TooLateToDelete"/>
+      <xs:complexType name="TooLateToDelete">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="IncorrectParameter" type="tns:IncorrectParameter"/>
+      <xs:complexType name="IncorrectParameter">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="messages" type="xs:string"/>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="TicketServiceNotAvailable" type="tns:TicketServiceNotAvailable"/>
+      <xs:complexType name="TicketServiceNotAvailable">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="MultipleNotFound" type="tns:MultipleNotFound"/>
+      <xs:complexType name="MultipleNotFound">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="messages" type="xs:string"/>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="AlreadyVIPException" type="tns:AlreadyVIPException"/>
+      <xs:complexType name="AlreadyVIPException">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="deleteEvent">
+    <wsdl:part element="tns:deleteEvent" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="copyTicketWithDoublePriceAndVip">
+    <wsdl:part element="tns:copyTicketWithDoublePriceAndVip" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="IncorrectParameter">
+    <wsdl:part element="tns:IncorrectParameter" name="IncorrectParameter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TicketServiceNotAvailable">
+    <wsdl:part element="tns:TicketServiceNotAvailable" name="TicketServiceNotAvailable">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteEventResponse">
+    <wsdl:part element="tns:deleteEventResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTicket">
+    <wsdl:part element="tns:getTicket" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="InvalidParameter">
+    <wsdl:part element="tns:InvalidParameter" name="InvalidParameter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="MultipleNotFound">
+    <wsdl:part element="tns:MultipleNotFound" name="MultipleNotFound">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPerson">
+    <wsdl:part element="tns:getPerson" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addEvent">
+    <wsdl:part element="tns:addEvent" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addEventResponse">
+    <wsdl:part element="tns:addEventResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPersonResponse">
+    <wsdl:part element="tns:getPersonResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getEventResponse">
+    <wsdl:part element="tns:getEventResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="copyTicketWithDoublePriceAndVipResponse">
+    <wsdl:part element="tns:copyTicketWithDoublePriceAndVipResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getQweResponse">
+    <wsdl:part element="tns:getQweResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTicketResponse">
+    <wsdl:part element="tns:getTicketResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllEventsResponse">
+    <wsdl:part element="tns:getAllEventsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllEvents">
+    <wsdl:part element="tns:getAllEvents" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getQwe">
+    <wsdl:part element="tns:getQwe" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getEvent">
+    <wsdl:part element="tns:getEvent" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CustomNotFound">
+    <wsdl:part element="tns:CustomNotFound" name="CustomNotFound">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AlreadyVIPException">
+    <wsdl:part element="tns:AlreadyVIPException" name="AlreadyVIPException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TooLateToDelete">
+    <wsdl:part element="tns:TooLateToDelete" name="TooLateToDelete">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="EventService">
+    <wsdl:operation name="deleteEvent">
+      <wsdl:input message="tns:deleteEvent" name="deleteEvent">
+      </wsdl:input>
+      <wsdl:output message="tns:deleteEventResponse" name="deleteEventResponse">
+      </wsdl:output>
+      <wsdl:fault message="tns:InvalidParameter" name="InvalidParameter">
+      </wsdl:fault>
+      <wsdl:fault message="tns:TooLateToDelete" name="TooLateToDelete">
+      </wsdl:fault>
+      <wsdl:fault message="tns:CustomNotFound" name="CustomNotFound">
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="copyTicketWithDoublePriceAndVip">
+      <wsdl:input message="tns:copyTicketWithDoublePriceAndVip" name="copyTicketWithDoublePriceAndVip">
+      </wsdl:input>
+      <wsdl:output message="tns:copyTicketWithDoublePriceAndVipResponse" name="copyTicketWithDoublePriceAndVipResponse">
+      </wsdl:output>
+      <wsdl:fault message="tns:MultipleNotFound" name="MultipleNotFound">
+      </wsdl:fault>
+      <wsdl:fault message="tns:InvalidParameter" name="InvalidParameter">
+      </wsdl:fault>
+      <wsdl:fault message="tns:AlreadyVIPException" name="AlreadyVIPException">
+      </wsdl:fault>
+      <wsdl:fault message="tns:IncorrectParameter" name="IncorrectParameter">
+      </wsdl:fault>
+      <wsdl:fault message="tns:TicketServiceNotAvailable" name="TicketServiceNotAvailable">
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getTicket">
+      <wsdl:input message="tns:getTicket" name="getTicket">
+      </wsdl:input>
+      <wsdl:output message="tns:getTicketResponse" name="getTicketResponse">
+      </wsdl:output>
+      <wsdl:fault message="tns:InvalidParameter" name="InvalidParameter">
+      </wsdl:fault>
+      <wsdl:fault message="tns:CustomNotFound" name="CustomNotFound">
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllEvents">
+      <wsdl:input message="tns:getAllEvents" name="getAllEvents">
+      </wsdl:input>
+      <wsdl:output message="tns:getAllEventsResponse" name="getAllEventsResponse">
+      </wsdl:output>
+      <wsdl:fault message="tns:CustomNotFound" name="CustomNotFound">
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getPerson">
+      <wsdl:input message="tns:getPerson" name="getPerson">
+      </wsdl:input>
+      <wsdl:output message="tns:getPersonResponse" name="getPersonResponse">
+      </wsdl:output>
+      <wsdl:fault message="tns:InvalidParameter" name="InvalidParameter">
+      </wsdl:fault>
+      <wsdl:fault message="tns:CustomNotFound" name="CustomNotFound">
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getQwe">
+      <wsdl:input message="tns:getQwe" name="getQwe">
+      </wsdl:input>
+      <wsdl:output message="tns:getQweResponse" name="getQweResponse">
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addEvent">
+      <wsdl:input message="tns:addEvent" name="addEvent">
+      </wsdl:input>
+      <wsdl:output message="tns:addEventResponse" name="addEventResponse">
+      </wsdl:output>
+      <wsdl:fault message="tns:TicketServiceNotAvailable" name="TicketServiceNotAvailable">
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getEvent">
+      <wsdl:input message="tns:getEvent" name="getEvent">
+      </wsdl:input>
+      <wsdl:output message="tns:getEventResponse" name="getEventResponse">
+      </wsdl:output>
+      <wsdl:fault message="tns:InvalidParameter" name="InvalidParameter">
+      </wsdl:fault>
+      <wsdl:fault message="tns:CustomNotFound" name="CustomNotFound">
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EventServiceImplServiceSoapBinding" type="tns:EventService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="deleteEvent">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="deleteEvent">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteEventResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InvalidParameter">
+        <soap:fault name="InvalidParameter" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="TooLateToDelete">
+        <soap:fault name="TooLateToDelete" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CustomNotFound">
+        <soap:fault name="CustomNotFound" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="copyTicketWithDoublePriceAndVip">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="copyTicketWithDoublePriceAndVip">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="copyTicketWithDoublePriceAndVipResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="MultipleNotFound">
+        <soap:fault name="MultipleNotFound" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidParameter">
+        <soap:fault name="InvalidParameter" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="AlreadyVIPException">
+        <soap:fault name="AlreadyVIPException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="IncorrectParameter">
+        <soap:fault name="IncorrectParameter" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="TicketServiceNotAvailable">
+        <soap:fault name="TicketServiceNotAvailable" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getTicket">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getTicket">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getTicketResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InvalidParameter">
+        <soap:fault name="InvalidParameter" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CustomNotFound">
+        <soap:fault name="CustomNotFound" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllEvents">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAllEvents">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllEventsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="CustomNotFound">
+        <soap:fault name="CustomNotFound" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getPerson">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getPerson">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getPersonResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InvalidParameter">
+        <soap:fault name="InvalidParameter" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CustomNotFound">
+        <soap:fault name="CustomNotFound" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getQwe">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getQwe">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getQweResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addEvent">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addEvent">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addEventResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="TicketServiceNotAvailable">
+        <soap:fault name="TicketServiceNotAvailable" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getEvent">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getEvent">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getEventResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InvalidParameter">
+        <soap:fault name="InvalidParameter" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CustomNotFound">
+        <soap:fault name="CustomNotFound" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EventServiceImplService">
+    <wsdl:port binding="tns:EventServiceImplServiceSoapBinding" name="EventServiceImplPort">
+      <soap:address location="http://localhost:8090/bookingservicepayara/EventServiceImpl"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
