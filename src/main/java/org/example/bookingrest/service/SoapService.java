@@ -113,4 +113,29 @@ public class SoapService {
             throw ex;
         }
     }
+
+
+    public Ticket copyTicketWithDoublePriceAndVip(String ticket_id, String person_id) {
+        try {
+            CopyTicketWithDoublePriceAndVip request = new CopyTicketWithDoublePriceAndVip();
+            request.setTicketId(ticket_id);
+            request.setPersonId(person_id);
+            Object response = webServiceTemplate.marshalSendAndReceive(request);
+
+            if (response instanceof JAXBElement) {
+                JAXBElement<?> jaxbElement = (JAXBElement<?>) response;
+                CopyTicketWithDoublePriceAndVipResponse eventsResponse = (CopyTicketWithDoublePriceAndVipResponse) jaxbElement.getValue();
+                return eventsResponse.getReturn();
+            }
+
+            if (response instanceof GetAllEventsResponse) {
+                CopyTicketWithDoublePriceAndVipResponse eventResponse = (CopyTicketWithDoublePriceAndVipResponse) response;
+                return eventResponse.getReturn();
+            }
+
+            throw new RuntimeException("Unexpected response type: " + response.getClass());
+        } catch (SoapFaultClientException ex) {
+            throw ex;
+        }
+    }
 }

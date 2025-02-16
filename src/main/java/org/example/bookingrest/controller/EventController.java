@@ -4,6 +4,7 @@ import org.example.bookingrest.service.SoapService;
 import org.example.bookingrest.wsdl.Event;
 import org.example.bookingrest.wsdl.EventRead;
 import org.example.bookingrest.wsdl.EventWrite;
+import org.example.bookingrest.wsdl.Ticket;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,7 +36,12 @@ public class EventController {
     }
 
     @DeleteMapping("/{id}")
-    public void saveEvent(@PathVariable String id) {
+    public void deleteEvent(@PathVariable String id) {
         soapService.delete(id);
+    }
+
+    @PostMapping("/{ticket_id}/{person_id}")
+    public Ticket copyTicketWithDoublePriceAndVip(@PathVariable String ticket_id, @PathVariable String person_id) {
+        return soapService.copyTicketWithDoublePriceAndVip(ticket_id, person_id);
     }
 }
