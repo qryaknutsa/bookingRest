@@ -22,7 +22,6 @@ public class CORSFilter implements Filter {
 
         if ("OPTIONS".equalsIgnoreCase(((HttpServletRequest) request).getMethod())) {
             httpResponse.setStatus(HttpServletResponse.SC_OK);
-            return;
         }
 
     }

@@ -24,7 +24,7 @@ public class EventController {
         return soapService.getQwe();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("event/{id}")
     public EventRead getEvent(@PathVariable String id) {
         return soapService.getEvent(id);
     }
